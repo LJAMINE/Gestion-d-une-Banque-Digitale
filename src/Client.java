@@ -6,8 +6,9 @@ public class Client extends User {
     private HashMap<String,Compte>comptes;
 
     public Client(String nom, String prenom, String motDePasse, String email,int idClient){
-super(  nom,   prenom,   motDePasse,   email);
-this.idClient=idClient;
+        super(  nom,   prenom,   motDePasse,   email);
+        this.idClient=idClient;
+        this.comptes = new HashMap<>(); // always initialiser to avoid null pb
     }
 
 
@@ -16,5 +17,13 @@ this.idClient=idClient;
     }
     public void setIdClient(int idClient){
         this.idClient=idClient;
+    }
+
+    public HashMap<String,Compte>getComptes(){
+        return comptes;
+    }
+
+    public void setComptes(HashMap<String, Compte> comptes) {
+        this.comptes = comptes;
     }
 }
