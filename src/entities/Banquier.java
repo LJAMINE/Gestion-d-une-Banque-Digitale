@@ -1,3 +1,5 @@
+package entities;
+
 public class Banquier extends User {
 
     private int idBanquier;
