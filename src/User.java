@@ -1,6 +1,13 @@
  public abstract class User {
-    private String motDePasse;
-    private String email;
-    private String prénom;
-    private String nom;
-}
+     protected String nom;
+     protected String prenom;
+     protected String email;
+     protected String motDePasse;
+
+     public User(String nom, String prenom, String motDePasse, String email) {
+         this.nom = nom;
+         this.prenom = prenom;
+         this.motDePasse = motDePasse;
+         this.email = email;
+     }
+ }
