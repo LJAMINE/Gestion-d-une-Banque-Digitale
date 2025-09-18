@@ -1,5 +1,7 @@
 import entities.Banquier;
 import entities.Client;
+import entities.Compte;
+import entities.TypeCompte;
 import service.BanquierService;
 import service.ClientService;
 
@@ -16,6 +18,16 @@ public class Main {
 
         List<Client> clients=new ArrayList<>();
         clients.add(new Client("LMGRMJ","AMINE","123","amine@gmail.com",1));
+//
+//        nom
+//                lm
+//        prenom
+//                amine
+//        password
+//        123
+//        email
+//        amine@gmail.com
+//        ID Client: 23
 
         List<Banquier> banquiers=new ArrayList<>();
         banquiers.add(new Banquier("baquier","said","1234","said@gmail.com",0));
@@ -94,11 +106,11 @@ public class Main {
 
             System.out.println("\nMenu Banquier :");
             System.out.println("1. Créer un client ");
-            System.out.println("1. Créer  un compte");
-            System.out.println("2. Modifier un client ou un compte");
-            System.out.println("3. Clôturer un compte");
-            System.out.println("4. Afficher les informations d'un client ou compte");
-            System.out.println("5. Voir le relevé bancaire d'un client");
+            System.out.println("2. Créer  un compte");
+            System.out.println("3. Modifier un client ou un compte");
+            System.out.println("4. Clôturer un compte");
+            System.out.println("5. Afficher les informations d'un client ou compte");
+            System.out.println("6. Voir le relevé bancaire d'un client");
             System.out.println("0. Quitter");
 
             int choix=scanner.nextInt();
@@ -130,11 +142,59 @@ public class Main {
 
                     System.out.println(nom+" "+prenom+" is added succefully " );
 
-
-
                     break;
                 case 2 :
                     System.out.println("Créer un compte");
+         //create an account for a client
+
+                    System.out.println("email du client pour creer le compte ");
+                    String clientEmail=scanner.nextLine();
+                    Client targetClient=null;
+
+                    for (Client c :clients){
+                        if (c.getEmail().equals(clientEmail)){
+                            targetClient=c;
+                            break;
+                        }
+                    }
+
+                    if (targetClient==null){
+                        System.out.println("client not found ");
+                    }else {
+                        System.out.println("Numéro du compte");
+                        String numeroCompte = scanner.nextLine();
+                        System.out.print("Type de compte   : ");
+                        System.out.print("1 . Courant    : ");
+                        System.out.print("2 . Epargne    : ");
+
+                        int typeChoixCompte=scanner.nextInt();
+
+                        TypeCompte typeCompte;
+
+                        if (typeChoixCompte==1){
+                            typeCompte=TypeCompte.COURANT;
+                        }else if (typeChoixCompte==2){
+                            typeCompte=TypeCompte.EPARGNE;
+                        }else {
+                            System.out.println("error");
+                            return ;
+                        }
+
+
+                         System.out.println("solde initial");
+                        double soldeInitial=scanner.nextDouble();
+                        scanner.nextLine();
+
+
+
+                        Compte newCompte= new Compte(numeroCompte,soldeInitial,typeCompte);
+
+                      banquierService.createCompte(targetClient,newCompte);
+
+                        System.out.println("client email est "+clientEmail+" numero est "+numeroCompte+" type is "+typeCompte+" solde est "+soldeInitial+" added successfuly ");
+                     }
+
+
                     break;
                 case 3 :
                     System.out.println("Modifier un client"); break;

@@ -22,9 +22,14 @@ public class BanquierService {
         return null; //  wrong email or password or not found in data
     }
 
-    public void createClient(List<Client> clients,Client newClient){
-        clients.add(newClient);
+                public void createClient(List<Client> clients,Client newClient){
+                    clients.add(newClient);
+                }
+            public void createCompte(Client client,Compte compte){
+                client.getComptes().put(compte.getNumeroCompte(),compte);
     }
+
+
 
 
 }
