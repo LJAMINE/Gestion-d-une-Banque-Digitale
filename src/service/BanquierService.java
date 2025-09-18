@@ -22,14 +22,42 @@ public class BanquierService {
         return null; //  wrong email or password or not found in data
     }
 
-                public void createClient(List<Client> clients,Client newClient){
-                    clients.add(newClient);
+    public void createClient(List<Client> clients,Client newClient){
+
+      for (Client c : clients){
+          if (c.getEmail().equals(newClient.getEmail())){
+              System.out.println("Un client avec  ce email existe   !");
+              return;
+          }
+      }
+                      clients.add(newClient);
                 }
-            public void createCompte(Client client,Compte compte){
+
+    public void createCompte(Client client,Compte compte){
+
+        if (client.getComptes().get(compte.getNumeroCompte())!=null){
+            System.out.println("ce numero de compte deja existe ");
+            return;
+        }
                 client.getComptes().put(compte.getNumeroCompte(),compte);
+
+        // HashMap: key = account number, value = Compte object
+
     }
 
 
 
+        public void deleteCompte(Client client , String numeroCompte){
+
+                 Compte removedAccount =client.getComptes().remove(numeroCompte);
+
+                     if (removedAccount==null){
+                         System.out.println("compte not found ");
+                     }else {
+                         System.out.println("compte deleted successfully");
+
+                     }
+
+        }
 
 }

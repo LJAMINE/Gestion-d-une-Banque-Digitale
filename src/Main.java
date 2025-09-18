@@ -101,114 +101,137 @@ public class Main {
             }
             System.out.println("Hello  " + banquier.getNom() );
 
-            boolean clientRun =true;
+            boolean banquierRun = true;
 
 
-            System.out.println("\nMenu Banquier :");
-            System.out.println("1. Créer un client ");
-            System.out.println("2. Créer  un compte");
-            System.out.println("3. Modifier un client ou un compte");
-            System.out.println("4. Clôturer un compte");
-            System.out.println("5. Afficher les informations d'un client ou compte");
-            System.out.println("6. Voir le relevé bancaire d'un client");
-            System.out.println("0. Quitter");
+          while (banquierRun){
+              System.out.println("\nMenu Banquier :");
+              System.out.println("1. Créer un client ");
+              System.out.println("2. Créer  un compte");
+              System.out.println("3. Modifier un client ou un compte");
+              System.out.println("4. Clôturer un compte");
+              System.out.println("5. Afficher les informations d'un client ou compte");
+              System.out.println("6. Voir le relevé bancaire d'un client");
+              System.out.println("0. Quitter");
 
-            int choix=scanner.nextInt();
-            scanner.nextLine();
-            switch (choix){
-                case 1 :
-                    System.out.println("Créer un client  ");
+              int choix=scanner.nextInt();
+              scanner.nextLine();
+              switch (choix){
+                  case 1 :
+                      System.out.println("Créer un client  ");
 
-                    System.out.println("nom");
-                    String nom = scanner.nextLine();
+                      System.out.println("nom");
+                      String nom = scanner.nextLine();
 
-                    System.out.println("prenom");
-                    String prenom = scanner.nextLine();
+                      System.out.println("prenom");
+                      String prenom = scanner.nextLine();
 
-                    System.out.println("password");
-                     String newpassword = scanner.nextLine();
+                      System.out.println("password");
+                      String newpassword = scanner.nextLine();
 
-                    System.out.println("email");
-                    String newemail = scanner.nextLine();
+                      System.out.println("email");
+                      String newemail = scanner.nextLine();
 
-                    System.out.print("ID Client: ");
-                    int idClient = scanner.nextInt();
-                    scanner.nextLine();
+                      System.out.print("ID Client: ");
+                      int idClient = scanner.nextInt();
+                      scanner.nextLine();
 
-                    Client newClient=new Client(nom,prenom,password,newemail,idClient);
+                      Client newClient=new Client(nom,prenom,password,newemail,idClient);
 
-                    banquierService.createClient(clients,newClient);
-
-
-                    System.out.println(nom+" "+prenom+" is added succefully " );
-
-                    break;
-                case 2 :
-                    System.out.println("Créer un compte");
-         //create an account for a client
-
-                    System.out.println("email du client pour creer le compte ");
-                    String clientEmail=scanner.nextLine();
-                    Client targetClient=null;
-
-                    for (Client c :clients){
-                        if (c.getEmail().equals(clientEmail)){
-                            targetClient=c;
-                            break;
-                        }
-                    }
-
-                    if (targetClient==null){
-                        System.out.println("client not found ");
-                    }else {
-                        System.out.println("Numéro du compte");
-                        String numeroCompte = scanner.nextLine();
-                        System.out.print("Type de compte   : ");
-                        System.out.print("1 . Courant    : ");
-                        System.out.print("2 . Epargne    : ");
-
-                        int typeChoixCompte=scanner.nextInt();
-
-                        TypeCompte typeCompte;
-
-                        if (typeChoixCompte==1){
-                            typeCompte=TypeCompte.COURANT;
-                        }else if (typeChoixCompte==2){
-                            typeCompte=TypeCompte.EPARGNE;
-                        }else {
-                            System.out.println("error");
-                            return ;
-                        }
+                      banquierService.createClient(clients,newClient);
 
 
-                         System.out.println("solde initial");
-                        double soldeInitial=scanner.nextDouble();
-                        scanner.nextLine();
+                      System.out.println(nom+" "+prenom+" is added succefully " );
+
+                      break;
+                  case 2 :
+                      System.out.println("Créer un compte");
+                      //create an account for a client
+
+                      System.out.println("email du client pour creer le compte ");
+                      String clientEmail=scanner.nextLine();
+                      Client targetClient=null;
+
+                      for (Client c :clients){
+                          if (c.getEmail().equals(clientEmail)){
+                              targetClient=c;
+                              break;
+                          }
+                      }
+
+                      if (targetClient==null){
+                          System.out.println("client not found ");
+                      }else {
+                          System.out.println("Numéro du compte");
+                          String numeroCompte = scanner.nextLine();
+                          System.out.print("Type de compte   : ");
+                          System.out.print("1 . Courant    : ");
+                          System.out.print("2 . Epargne    : ");
+
+                          int typeChoixCompte=scanner.nextInt();
+
+                          TypeCompte typeCompte;
+
+                          if (typeChoixCompte==1){
+                              typeCompte=TypeCompte.COURANT;
+                          }else if (typeChoixCompte==2){
+                              typeCompte=TypeCompte.EPARGNE;
+                          }else {
+                              System.out.println("error");
+                              return ;
+                          }
+
+
+                          System.out.println("solde initial");
+                          double soldeInitial=scanner.nextDouble();
+                          scanner.nextLine();
 
 
 
-                        Compte newCompte= new Compte(numeroCompte,soldeInitial,typeCompte);
+                          Compte newCompte= new Compte(numeroCompte,soldeInitial,typeCompte);
 
-                      banquierService.createCompte(targetClient,newCompte);
+                          banquierService.createCompte(targetClient,newCompte);
 
-                        System.out.println("client email est "+clientEmail+" numero est "+numeroCompte+" type is "+typeCompte+" solde est "+soldeInitial+" added successfuly ");
-                     }
+                          System.out.println("the account of this client and his  email est "+clientEmail+" numero est "+numeroCompte+" type is "+typeCompte+" solde est "+soldeInitial+" added successfuly ");
+                      }
 
 
-                    break;
-                case 3 :
-                    System.out.println("Modifier un client"); break;
-                case 4:
-                    System.out.println("Clôturer un compte"); break;
-                case 5 :
-                    System.out.println("Afficher les informations"); break;
-                case 6 :
-                    System.out.println("Voir le relevé"); break;
-                case 0 :
-                    clientRun=false; break;
-                default:
-                    System.out.println("choix not valid");
-            }
+                      break;
+                  case 3 :
+                      System.out.println("Modifier un client"); break;
+                  case 4:
+                      System.out.println("Clôturer un compte");
+                      System.out.println("email du client");
+                      String deletedEmail=scanner.nextLine();
+
+                      Client deletedClient=null;
+
+                      for (Client c :clients){
+                          if (c.getEmail().equals(deletedEmail)){
+                              deletedClient=c;
+                              break;
+                          }
+                      }
+
+                      if (deletedClient==null){
+                          System.out.println("client not found ");
+                          break;
+                      }
+                      System.out.println("numero du compte pur delete : ");
+                      String deletedNum=scanner.nextLine();
+                      banquierService.deleteCompte(deletedClient,deletedNum);
+
+                      break;
+                  case 5 :
+                      System.out.println("Afficher les informations"); break;
+                  case 6 :
+                      System.out.println("Voir le relevé"); break;
+                  case 0 :
+                      banquierRun=false; break;
+                  default:
+                      System.out.println("choix not valid");
+              }
+          }
 
 
         }else {
