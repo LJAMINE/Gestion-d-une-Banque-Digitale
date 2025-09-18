@@ -9,7 +9,6 @@ public class ClientService {
 
     public ClientService(List<Client>clients){
         this.clients = clients;
-
     }
 
 //    auth
@@ -21,7 +20,7 @@ public class ClientService {
             }
         }
         return null; //  wrong email or password or not found in data
-
-
     }
+
+
 }

@@ -93,7 +93,8 @@ public class Main {
 
 
             System.out.println("\nMenu Banquier :");
-            System.out.println("1. Créer un client ou un compte");
+            System.out.println("1. Créer un client ");
+            System.out.println("1. Créer  un compte");
             System.out.println("2. Modifier un client ou un compte");
             System.out.println("3. Clôturer un compte");
             System.out.println("4. Afficher les informations d'un client ou compte");
@@ -104,14 +105,44 @@ public class Main {
             scanner.nextLine();
             switch (choix){
                 case 1 :
-                    System.out.println("Créer un client"); break;
+                    System.out.println("Créer un client  ");
+
+                    System.out.println("nom");
+                    String nom = scanner.nextLine();
+
+                    System.out.println("prenom");
+                    String prenom = scanner.nextLine();
+
+                    System.out.println("password");
+                     String newpassword = scanner.nextLine();
+
+                    System.out.println("email");
+                    String newemail = scanner.nextLine();
+
+                    System.out.print("ID Client: ");
+                    int idClient = scanner.nextInt();
+                    scanner.nextLine();
+
+                    Client newClient=new Client(nom,prenom,password,newemail,idClient);
+
+                    banquierService.createClient(clients,newClient);
+
+
+                    System.out.println(nom+" "+prenom+" is added succefully " );
+
+
+
+                    break;
                 case 2 :
+                    System.out.println("Créer un compte");
+                    break;
+                case 3 :
                     System.out.println("Modifier un client"); break;
-                case 3:
+                case 4:
                     System.out.println("Clôturer un compte"); break;
-                case 4 :
-                    System.out.println("Afficher les informations"); break;
                 case 5 :
+                    System.out.println("Afficher les informations"); break;
+                case 6 :
                     System.out.println("Voir le relevé"); break;
                 case 0 :
                     clientRun=false; break;
