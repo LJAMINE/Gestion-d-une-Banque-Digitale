@@ -19,7 +19,7 @@ public class BanquierService {
                 return banquier;
             }
         }
-        return null;
+        return null; //  wrong email or password or not found in data
     }
 
     public void createClient(List<Client> clients,Client newClient){

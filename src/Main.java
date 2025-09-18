@@ -47,6 +47,40 @@ public class Main {
                 }
             System.out.println("Hello  " + client.getNom() );
 
+//          menu
+
+            boolean clientRun =true;
+
+            while (clientRun){
+                System.out.println("\nMenu Client :");
+                System.out.println("1. Consulter le solde");
+                System.out.println("2. Déposer de l'argent");
+                System.out.println("3. Retirer de l'argent");
+                System.out.println("4. Virement entre comptes");
+                System.out.println("5. Consulter le relevé bancaire");
+                System.out.println("0. Quitter");
+
+                int choix=scanner.nextInt();
+                scanner.nextLine();
+
+                switch (choix){
+                    case 1 :
+                        System.out.println("Consulter"); break;
+                    case 2 :
+                        System.out.println("depot"); break;
+                    case 3:
+                        System.out.println("retirer"); break;
+                    case 4 :
+                        System.out.println("Virement entre compte"); break;
+                    case 5 :
+                        System.out.println("Consulter compte"); break;
+                    case 0 :
+                        clientRun=false; break;
+                    default:
+                        System.out.println("choix not valid");
+                }
+            }
+
         } else if (role == 2) {
             Banquier banquier=banquierService.authentication(email,password);
             if (banquier==null){
@@ -54,6 +88,37 @@ public class Main {
                        return;
             }
             System.out.println("Hello  " + banquier.getNom() );
+
+            boolean clientRun =true;
+
+
+            System.out.println("\nMenu Banquier :");
+            System.out.println("1. Créer un client ou un compte");
+            System.out.println("2. Modifier un client ou un compte");
+            System.out.println("3. Clôturer un compte");
+            System.out.println("4. Afficher les informations d'un client ou compte");
+            System.out.println("5. Voir le relevé bancaire d'un client");
+            System.out.println("0. Quitter");
+
+            int choix=scanner.nextInt();
+            scanner.nextLine();
+            switch (choix){
+                case 1 :
+                    System.out.println("Créer un client"); break;
+                case 2 :
+                    System.out.println("Modifier un client"); break;
+                case 3:
+                    System.out.println("Clôturer un compte"); break;
+                case 4 :
+                    System.out.println("Afficher les informations"); break;
+                case 5 :
+                    System.out.println("Voir le relevé"); break;
+                case 0 :
+                    clientRun=false; break;
+                default:
+                    System.out.println("choix not valid");
+            }
+
 
         }else {
             System.out.println("role not known");
