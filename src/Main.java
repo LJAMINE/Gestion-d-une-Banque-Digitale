@@ -101,9 +101,29 @@ public class Main {
                           }
                           break;
                       case 2 :
-                          System.out.println("depot"); break;
+                          System.out.println("depot");
+                          for (String num :client.getComptes().keySet()){
+                              System.out.println("numero: " + num);
+                          }
+                          System.out.println("entrer le compte pour faire le depot");
+                          String numcompteAfaireDepot=scanner.nextLine();
+                          Compte compteDepot=client.getComptes().get(numcompteAfaireDepot);
+
+                          if (compteDepot==null){
+                              System.out.println("compte not found ");
+                          }else {
+                              System.out.println("montant a deposer");
+                              double montant =scanner.nextDouble();
+                              scanner.nextLine();
+                              compteDepot.setSolde(compteDepot.getSolde()+montant);
+                              System.out.println("the new solde is "+compteDepot.getSolde());
+                          }
+
+                          break;
                       case 3:
-                          System.out.println("retirer"); break;
+                          System.out.println("retirer");
+
+                          break;
                       case 4 :
                           System.out.println("Virement entre compte"); break;
                       case 5 :
