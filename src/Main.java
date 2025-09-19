@@ -30,7 +30,7 @@ public class Main {
 //        ID Client: 23
 
         List<Banquier> banquiers=new ArrayList<>();
-        banquiers.add(new Banquier("baquier","said","1234","said@gmail.com",0));
+        banquiers.add(new Banquier("baquier","said","123","said@gmail.com",0));
 
         ClientService clientService=new ClientService(clients);
 
@@ -122,7 +122,28 @@ public class Main {
                           break;
                       case 3:
                           System.out.println("retirer");
+                          for (String num :client.getComptes().keySet()){
+                              System.out.println("numero est : "+num);
+                          }
 
+                          System.out.println("entrer le compte pour faire retrait d'argent");
+                          String numCompteafaireRetrait=scanner.nextLine();
+                          Compte compteRetrait=client.getComptes().get(numCompteafaireRetrait);
+
+                          if (compteRetrait==null){
+                              System.out.println("compte not found ");
+                          }else {
+                              System.out.println("montant a faire retrait");
+                              double montantRetrait=scanner.nextDouble();
+                              scanner.nextLine();
+                          if (montantRetrait>compteRetrait.getSolde()){
+                              System.out.println("montant a faire retrait est plus que solde");
+                              return;
+                          }else {
+                              compteRetrait.setSolde(compteRetrait.getSolde()-montantRetrait);
+                          }
+                          }
+                          System.out.println("the new solde is "+compteRetrait.getSolde());
                           break;
                       case 4 :
                           System.out.println("Virement entre compte"); break;
